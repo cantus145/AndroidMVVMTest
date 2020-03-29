@@ -1,6 +1,5 @@
 package example.com.android.mvvmtest
 
-import android.app.ProgressDialog
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
