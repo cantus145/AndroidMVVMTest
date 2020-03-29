@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import example.com.android.mvvmtest.Repository.InfoRepository
 import example.com.android.mvvmtest.ViewModel.InfoViewModel
 
+@Suppress("UNCHECKED_CAST")
 class InfoFactory (private var infoRepository: InfoRepository): ViewModelProvider.Factory {
     override fun <T: ViewModel> create(@NonNull modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(InfoViewModel::class.java)) {

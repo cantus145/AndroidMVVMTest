@@ -4,9 +4,7 @@ import example.com.android.mvvmtest.data.UserData
 import java.util.concurrent.Executors
 
 var idx = 1
-const val max = 20
-var bool = true
-val userData = UserData()
+const val max = 250
 
 class InfoRepository {
     fun loadInfo(task: OnTaskFinish) {
@@ -16,32 +14,35 @@ class InfoRepository {
             }
 
             while (idx <= max) {
-                updateUser()
-                Thread.sleep(100)
-                task.onFinish(userData)
+                Thread.sleep(10)
+                task.onFinish(generateUsers())
                 idx++
             }
         }
     }
 
-    private fun updateUser() {
-        var id: Int = 1
-        var name = ""
-
-        when (bool) {
-            true -> {
-                id = 123
-                name = "Adin"
-            }
-            false -> {
-                id = 456
-                name = "Sue"
-            }
+    private fun generateUsers(): MutableList<UserData> {
+        val users: MutableList<UserData> = arrayListOf()
+        for (i in 1..(3..10).random()) run {
+            val user = UserData()
+            user.id = (1..9999).random()
+            user.userName = genName()
+            users.add(user)
         }
+        return users
+    }
 
-        bool = !bool
+    /**
+     * Generate random name
+     * https://stackoverflow.com/questions/46943860/idiomatic-way-to-generate-a-random-alphanumeric-string-in-kotlin
+     */
+    private fun genName(): String {
+        val allowedFirstChar = "ABCDEFGHIJKLMNOPQRSTUVWXTZ"
+        val allowedChars = "abcdefghiklmnopqrstuvwxyz"
 
-        userData.id = id
-        userData.userName = name
+        val firstChar = allowedFirstChar.random().toString()
+        val tailChars =
+            (1..(2..10).random()).map { allowedChars.random() }.joinToString("")
+        return firstChar + tailChars
     }
 }
