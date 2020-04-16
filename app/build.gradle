@@ -1,5 +1,5 @@
 // Android MVVM test
-// Branch master
+// Branch master (主要分支)
 
 apply plugin: 'com.android.application'
 
