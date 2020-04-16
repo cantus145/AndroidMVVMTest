@@ -9,10 +9,11 @@ import example.com.android.mvvmtest.data.UserData
 
 class InfoViewModel(var infoRepository: InfoRepository) : ViewModel() {
 
-    ///
+    /**
+     * 可變LiveData  
+     */ 
     private var userInfoLiveData = MutableLiveData<MutableList<UserData>>()
-    ///
-
+    
     fun callInfo(): LiveData<MutableList<UserData>> {
         infoRepository.loadInfo(object : OnTaskFinish {
             override fun onFinish(data: MutableList<UserData>) {
@@ -21,5 +22,5 @@ class InfoViewModel(var infoRepository: InfoRepository) : ViewModel() {
         })
         return userInfoLiveData
     }
-
+    
 }

@@ -1,5 +1,8 @@
 package example.com.android.mvvmtest.data
 
+/**
+ * 使用者資料
+ */
 class UserData {
 
     /**
